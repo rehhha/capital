@@ -12,10 +12,12 @@ class Capital extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Image.asset(
-            'assets/images/ic_launcher.png'
-        ),
-        ),
-      );
+        body: Center(
+          child: Container(child: Image.asset('assets/images/ic_launcher.png',
+          scale: 1.5,),
+    ),
+    )
+    )
+    );
   }
 }
