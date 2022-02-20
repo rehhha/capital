@@ -32,9 +32,10 @@ class Capital extends StatelessWidget {
               ),
               SizedBox(height: 20,),
               Container(
-                child: Text('test',
+                child: Text('Dobro došli',
                 style: TextStyle(
                   fontSize: 40,
+                  color: Colors.blue,
                 ),),
               ),
             ],
