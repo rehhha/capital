@@ -6,15 +6,18 @@ class Meni extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Meni'),
+      ),
       body: Center(
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            fixedSize: Size.fromWidth(150),
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('Go back!'),
+        child: Column(
+          children: const [
+            Card(
+              child: Image(
+                image: AssetImage('assets/images/meni-01.png'),
+              )
+            ),
+          ],
         ),
       ),
     );
