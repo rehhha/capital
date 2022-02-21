@@ -5,12 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 void main() => runApp(Capital());
 
 class Capital extends StatelessWidget {
-  void odgovorPitanje() {
-    print('Ovo je vaš odgovor');
-  }
+  const Capital({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    void naMeni(BuildContext context) {
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => Meni()));
+    }
+
     return MaterialApp(
       theme: ThemeData(
         textTheme: GoogleFonts.latoTextTheme(
@@ -19,26 +21,60 @@ class Capital extends StatelessWidget {
       ),
       home: Scaffold(
         body: Container(
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                child: Image.asset(
-                  'assets/images/ic_launcher.png',
-                  scale: 5,
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  child: Image.asset(
+                    'assets/images/ic_launcher.png',
+                    scale: 5,
+                  ),
                 ),
-              ),
-              SizedBox(height: 20,),
-              Container(
-                child: Text('test',
-                style: TextStyle(
-                  fontSize: 40,
-                ),),
-              ),
-            ],
-          )
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  child: Text(
+                    'Dobro došli',
+                    style: TextStyle(
+                      fontSize: 60,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+                Container(
+                  child: ElevatedButton(
+                    child: const Text('Meni'),
+                    onPressed: () {
+                      naMeni(context);
+                    },
+                  ),
+                )
+              ],
+            )),
+      ),
+    );
+  }
+}
+
+class Home extends StatelessWidget {
+  
+}
+
+class Meni extends StatelessWidget {
+  const Meni({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('Go back!'),
         ),
       ),
     );
