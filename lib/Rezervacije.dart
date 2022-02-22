@@ -13,6 +13,8 @@ class Rezervacije extends StatelessWidget {
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             SizedBox(
               height: 30,
@@ -21,34 +23,42 @@ class Rezervacije extends StatelessWidget {
               'assets/images/ic_launcher.png',
               scale: 5,
             ),
-
-            //provjera rezervacije
-            rezervacija
-                ? Text(
-                    'Trenutno imate rezervaciju',
-                    style: TextStyle(
-                      fontSize: 28,
-                      color: Colors.blue,
+            SizedBox(
+              height: 380,
+            ),
+            Container(
+              //provjera rezervacije
+              child: rezervacija
+                  ? Text(
+                      'Trenutno imate rezervaciju',
+                      style: TextStyle(
+                        fontSize: 28,
+                        color: Colors.blue,
+                      ),
+                    )
+                  : Text(
+                      'Trenutno nemate rezervaciju',
+                      style: TextStyle(
+                        fontSize: 28,
+                        color: Colors.blue,
+                      ),
                     ),
-                  )
-                : Text(
-                    'Trenutno nemate rezervaciju',
-                    style: TextStyle(
-                      fontSize: 28,
-                      color: Colors.blue,
-                    ),
-                  ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                fixedSize: Size.fromWidth(200),
+            ),
+            Container(
+              alignment: Alignment.bottomCenter,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  fixedSize: Size.fromWidth(200),
+                ),
+                child: const Text('Napravite rezervaciju'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Rezervacije()),
+                  );
+                },
               ),
-              child: const Text('Napravite rezervaciju'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Rezervacije()),
-                );
-              },
             ),
           ],
         ),
