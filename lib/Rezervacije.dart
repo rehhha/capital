@@ -1,3 +1,4 @@
+import 'package:capital/PravljenjeRezervacija.dart';
 import 'package:capital/main.dart';
 import 'package:flutter/material.dart';
 
@@ -55,7 +56,7 @@ class Rezervacije extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const Rezervacije()),
+                        builder: (context) => const PravljenjeRezervacija()),
                   );
                 },
               ),
