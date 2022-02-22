@@ -79,7 +79,7 @@ class Home extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Meni()),
+                    MaterialPageRoute(builder: (context) => const Rezervacije()),
                   );
                 },
               ),
