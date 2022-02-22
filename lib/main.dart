@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'Meni.dart';
+import 'Rezervacije.dart';
+
+bool rezervacija = false;
 
 void main() => runApp(Capital());
 
@@ -10,10 +13,6 @@ class Capital extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void naMeni(BuildContext context) {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => Meni()));
-    }
 
     return MaterialApp(
       theme: ThemeData(
@@ -34,9 +33,13 @@ class Home extends StatelessWidget {
         width: double.infinity,
         height: double.infinity,
         child: Column(
+
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 50,
+            ),
             Row(
                 mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -52,6 +55,7 @@ class Home extends StatelessWidget {
             Row(
 
               mainAxisAlignment: MainAxisAlignment.center,
+              //crossAxisAlignment: CrossAxisAlignment.stretch,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
@@ -64,7 +68,7 @@ class Home extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 200,
+              height: 100,
             ),
             Container(
               child: ElevatedButton(
@@ -89,7 +93,7 @@ class Home extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Meni()),
+                    MaterialPageRoute(builder: (context) => const Rezervacije()),
                   );
                 },
               ),
