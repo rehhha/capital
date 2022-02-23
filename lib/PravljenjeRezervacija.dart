@@ -6,23 +6,26 @@ class PravljenjeRezervacija extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Napravi rezervaciju'),),
+        title: Text('Napravi rezervaciju'),
+      ),
       body: Column(
         children: [
           TextFormField(
             decoration: const InputDecoration(
-            icon: Icon(Icons.person),
-            hintText: 'Kako se zovete?',
-            labelText: 'Ime',
-         ),
-        onSaved: (String? value) {
-          // This optional block of code can be used to run
-          // code when the user saves the form.
-        },
-        validator: (String? value) {
-          return (value != null && value.contains('@')) ? 'Do not use the @ char.' : null;
-        },
-      ),
+              icon: Icon(Icons.person),
+              hintText: 'Kako se zovete?',
+              labelText: 'Ime',
+            ),
+            onSaved: (String? value) {
+              // This optional block of code can be used to run
+              // code when the user saves the form.
+            },
+            validator: (String? value) {
+              return (value != null && value.contains('@'))
+                  ? 'Do not use the @ char.'
+                  : null;
+            },
+          ),
           TextFormField(
             keyboardType: TextInputType.number,
             decoration: const InputDecoration(
@@ -35,7 +38,9 @@ class PravljenjeRezervacija extends StatelessWidget {
               // code when the user saves the form.
             },
             validator: (String? value) {
-              return (value != null && value.contains('@')) ? 'Do not use the @ char.' : null;
+              return (value != null && value.contains('@'))
+                  ? 'Do not use the @ char.'
+                  : null;
             },
           ),
           TextFormField(
@@ -48,14 +53,13 @@ class PravljenjeRezervacija extends StatelessWidget {
               // code when the user saves the form.
             },
             validator: (String? value) {
-              return (value != null && value.contains('@')) ? 'Do not use the @ char.' : null;
+              return (value != null && value.contains('@'))
+                  ? 'Do not use the @ char.'
+                  : null;
             },
           ),
-
-
-
-        ]
-    ));
+        ],
+      ),
+    );
   }
-
 }
