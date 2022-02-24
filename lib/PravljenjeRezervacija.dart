@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
-class PravljenjeRezervacija extends StatelessWidget {
+class PravljenjeRezervacija extends StatefulWidget {
   const PravljenjeRezervacija({Key? key}) : super(key: key);
+
+  @override
+  State<PravljenjeRezervacija> createState() => _PravljenjeRezervacijaState();
+}
+
+class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
+  DateTime _dateTime = DateTime.now();
+  TimeOfDay _timeOfDay = TimeOfDay.now();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,10 +51,37 @@ class PravljenjeRezervacija extends StatelessWidget {
                   : null;
             },
           ),
+          Text(_dateTime.day.toString() + "."+ _dateTime.month.toString()+ "."+_dateTime.year.toString()),
+
+          ElevatedButton(
+              onPressed: () {
+                showDatePicker(
+                    context: context,
+                    initialDate: _dateTime,
+                    firstDate: _dateTime,
+                    lastDate: DateTime(2100)).then((date){
+                      setState(() {
+                    _dateTime = date!;
+                  });
+                });
+              },
+              child: Text('Odaberite datum'),),
+          Text(_timeOfDay.hour.toString() + ":"+ _timeOfDay.minute.toString()),
+          ElevatedButton(
+            onPressed: (){
+              showTimePicker(context: context, initialTime: _timeOfDay).then((time){
+                setState(() {
+                  _timeOfDay = time!;
+                });
+              });
+            },
+            child: Text("Izaberi vrijeme"),),
           TextFormField(
+            keyboardType: TextInputType.number,
             decoration: const InputDecoration(
-              hintText: 'Odaberite datum?',
-              labelText: 'Datum',
+              icon: Icon(Icons.person),
+              hintText: 'Rezervacija za koliko osoba?',
+              labelText: 'Broj osoba',
             ),
             onSaved: (String? value) {
               // This optional block of code can be used to run
@@ -59,6 +94,7 @@ class PravljenjeRezervacija extends StatelessWidget {
             },
           ),
         ],
+
       ),
     );
   }

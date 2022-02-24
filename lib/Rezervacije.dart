@@ -47,18 +47,21 @@ class Rezervacije extends StatelessWidget {
             ),
             Container(
               alignment: Alignment.bottomCenter,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  fixedSize: Size.fromWidth(200),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size.fromWidth(200),
+                  ),
+                  child: const Text('Napravite rezervaciju'),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const PravljenjeRezervacija()),
+                    );
+                  },
                 ),
-                child: const Text('Napravite rezervaciju'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const PravljenjeRezervacija()),
-                  );
-                },
               ),
             ),
           ],
