@@ -1,4 +1,4 @@
-import 'package:capital/PravljenjeRezervacija.dart';
+import 'package:capital/screens/PravljenjeRezervacija.dart';
 import 'package:capital/main.dart';
 import 'package:flutter/material.dart';
 

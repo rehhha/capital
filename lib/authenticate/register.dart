@@ -1,19 +1,21 @@
-import 'package:capital/authenticate/register.dart';
-import 'package:capital/services/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:capital/authenticate/authenticate.dart';
 
-class SignIn extends StatefulWidget {
+import '../services/auth.dart';
+import 'authenticate.dart';
+
+class Register extends StatefulWidget {
+
   final Function toggleView;
 
-  const SignIn({Key? key, required this.toggleView}) : super(key: key);
+  const Register({Key? key, required this.toggleView}) : super(key: key);
+
 
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
+
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
 
@@ -28,11 +30,11 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(
         backgroundColor: Colors.grey[400],
         elevation: 0.0,
-        title: Text('Prijavi se'),
+        title: Text('Registruj se'),
         actions: <Widget>[
           FlatButton.icon(
             icon: Icon(Icons.person),
-            label: Text('Registruj se'),
+            label: Text('Prijavi se'),
             onPressed: () {
               widget.toggleView();
             },
@@ -49,6 +51,7 @@ class _SignInState extends State<SignIn> {
                 height: 20.0,
               ),
               TextFormField(
+                validator: (val) => val!.isEmpty ? 'Unesi email' : null,
                 onChanged: (val) {
                   setState(() => email = val);
                 },
@@ -58,6 +61,8 @@ class _SignInState extends State<SignIn> {
               ),
               TextFormField(
                 obscureText: true,
+                validator: (val) => val!.length < 6 ?
+                'Lozinka mora imati najmanje 6 znakova' : null,
                 onChanged: (val) {
                   setState(() => pass = val);
                 },
@@ -66,24 +71,23 @@ class _SignInState extends State<SignIn> {
                 height: 20.0,
               ),
               RaisedButton(
-                color: Colors.blue[400],
-                child: Text(
-                  'Prijavi se',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    dynamic result = await _auth.signIn(email, pass);
-                    if (result == null) {
-                      setState(() => error = 'Greška');
+                  color: Colors.blue[400],
+                  child: Text(
+                    'Registruj se',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () async {
+                    if(_formKey.currentState!.validate()){
+                      dynamic result = await _auth.registerEmailPass(email, pass);
+                      if(result == null){
+                        setState(() => error = 'Upiši ispravan email');
+                      }
                     }
-                  }
-                },
-              ),
+                  },),
               SizedBox(height: 12.0),
               Text(
                 error,
-                style: TextStyle(color:Colors.red, fontSize: 14),
+                style: TextStyle(color: Colors.red, fontSize: 14),
               )
             ],
           ),
