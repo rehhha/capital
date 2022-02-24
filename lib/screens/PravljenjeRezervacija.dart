@@ -104,7 +104,7 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
               },
               validator: (String? value) {
                 return (value != null && value.contains('@'))
-                    ? 'Do not use the @ char.'
+                    ? 'Do not use the @  char.'
                     : null;
               },
             ),
