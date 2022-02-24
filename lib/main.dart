@@ -1,3 +1,4 @@
+import 'package:capital/services/auth.dart';
 import 'package:capital/wrapper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -5,12 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:capital/models/user.dart';
 
 import 'firebase_options.dart';
-import 'src/authentication.dart';
-import 'src/widgets.dart';
-import 'Meni.dart';
-import 'Rezervacije.dart';
+import 'screens/Rezervacije.dart';
 import 'package:capital/home/Home.dart';
 
 bool rezervacija = true;
@@ -28,13 +27,17 @@ class Capital extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        textTheme: GoogleFonts.latoTextTheme(
-          Theme.of(context).textTheme,
+    return StreamProvider<Korisnik?>.value(
+      value: AuthService().user,
+      initialData: null,
+      child: MaterialApp(
+        theme: ThemeData(
+          textTheme: GoogleFonts.latoTextTheme(
+            Theme.of(context).textTheme,
+          ),
         ),
+        home: Wrapper(),
       ),
-      home: Wrapper(),
     );
   }
 }
