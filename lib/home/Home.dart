@@ -2,17 +2,17 @@ import 'package:capital/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:capital/screens/Rezervacije.dart';
 import 'package:capital/screens/Meni.dart';
+import 'package:capital/services/database.dart';
 
 class Home extends StatelessWidget {
-
   final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: Color.fromARGB(255,248,251,255),
       appBar: AppBar(
-        backgroundColor: Colors.grey[400],
+        backgroundColor: Color.fromARGB(255,172,137,83),
         elevation: 0.0,
         actions: <Widget>[
           FlatButton.icon(
@@ -24,45 +24,49 @@ class Home extends StatelessWidget {
           )
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          //width: double.infinity,
-          //height: double.infinity,
-          children: <Widget>[
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+      body: Container(
+    decoration: BoxDecoration(
+    image: DecorationImage(
+    image: AssetImage("assets/images/bcg.png"),
+    fit: BoxFit.cover,
+    ),),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Center(
+            child: Column(
+
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 50,
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
+
+              //width: double.infinity,
+              //height: double.infinity,
+              children: <Widget>[
+                const Text(
+                  'Dobro došli u',
+                  style: TextStyle(
+                    fontSize: 60,
+                    color: Colors.black87,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/images/ic_launcher.png',
-                      scale: 5,
-                    ),
-                  ],
+                const Text(
+                  'Capital Bars& Restaurants',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 60,
+                    color: Color.fromARGB(255,172,137,83),
+                  ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  //crossAxisAlignment: CrossAxisAlignment.stretch,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Dobro došli',
-                      style: TextStyle(
-                        fontSize: 60,
-                        color: Colors.blue,
-                      ),
-                    ),
-                  ],
+                const SizedBox(
+                  height: 130,
                 ),
                 Container(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      fixedSize: Size.fromWidth(150),
+                      fixedSize: Size.fromWidth(250),
+                      primary: Color.fromARGB(255,172,137,83),
+                      textStyle: TextStyle(fontSize: 25),
                     ),
                     child: const Text('Meni'),
                     onPressed: () {
@@ -76,7 +80,9 @@ class Home extends StatelessWidget {
                 Container(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      fixedSize: Size.fromWidth(150),
+                      fixedSize: Size.fromWidth(250),
+                      primary: Color.fromARGB(255,172,137,83),
+                      textStyle: TextStyle(fontSize: 25),
                     ),
                     child: const Text('Rezervacije'),
                     onPressed: () {
@@ -90,7 +96,7 @@ class Home extends StatelessWidget {
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );

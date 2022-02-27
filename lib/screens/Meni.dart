@@ -8,6 +8,7 @@ class Meni extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Meni'),
+        backgroundColor: Color.fromARGB(255,172,137,83),
       ),
       body: Center(
         child: ListView(

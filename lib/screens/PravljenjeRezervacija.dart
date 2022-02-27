@@ -1,3 +1,4 @@
+import 'package:capital/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:capital/services/database.dart';
@@ -38,6 +39,7 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Napravi rezervaciju'),
+        backgroundColor: Color.fromARGB(255,172,137,83),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -48,11 +50,12 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 const Padding(
-                  padding: EdgeInsets.only(bottom: 30),
+                  padding: EdgeInsets.fromLTRB(0, 30, 0, 50),
                   child: Text(
                     'Rezervišite stol',
                     style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 35,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
@@ -136,6 +139,9 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
                         });
                       },
                       child: Icon(Icons.calendar_today),
+                      style: ElevatedButton.styleFrom(
+                        primary: Color.fromARGB(255,172,137,83),
+                      ),
                     ),
                   ),
                 ]),
@@ -144,7 +150,7 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
                       _timeOfDay.hour.toString() +
                           ":" +
                           _timeOfDay.minute.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 25,
                       )),
                   Padding(
@@ -160,15 +166,19 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
                           });
                         });
                       },
+                      style: ElevatedButton.styleFrom(
+                        primary: const Color.fromARGB(255,172,137,83),
+                      ),
                       child: Icon(Icons.query_builder),
                     ),
                   ),
                 ]),
                 const SizedBox(
-                  height: 100,
+                  height: 120,
                 ),
                 ElevatedButton(
                   onPressed: () async {
+
                     if (_formKey.currentState!.validate()) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -176,7 +186,8 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
                         ),
                       );
                       dynamic result = await _auth.rezervacija(
-                          ime, brojTelefona, brojOsoba, datum, vrijeme);
+                          ime, brojTelefona, brojOsoba, datum, vrijeme, 'Na čekanju');
+                      dynamic result2 = await _auth.rezervacijaDa('Da');
                       if (result == null) {
                         setState(() => error = 'Pokušajte ponovo');
                       }
@@ -190,6 +201,7 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
                   child: Text('Napravi rezervaciju'),
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(200, 50),
+                    primary: Color.fromARGB(255,172,137,83),
                   ),
                 ),
               ],

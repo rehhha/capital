@@ -134,7 +134,7 @@ class _RegisterState extends State<Register> {
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       dynamic result =
-                          await _auth.registerEmailPass(email, pass, ime, prezime, brojTelefona);
+                          await _auth.registerEmailPass(email, pass, ime, prezime, brojTelefona, 'ne');
                       if (result == null) {
                         setState(() => error = 'Upiši ispravan email');
                       }

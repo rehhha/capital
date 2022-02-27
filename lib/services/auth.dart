@@ -42,11 +42,11 @@ class AuthService {
   }
 
   //registracija
-  Future registerEmailPass(String email, String pass, String ime, String prezime, String brojTelefona) async{
+  Future registerEmailPass(String email, String pass, String ime, String prezime, String brojTelefona, String rezervacija) async{
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: pass);
       User? user = result.user;
-      await DatabaseService(uid: user!.uid).updateUserData(ime,prezime, brojTelefona);
+      await DatabaseService(uid: user!.uid).updateUserData(ime,prezime, brojTelefona, rezervacija);
       return _FromFirebaseUser(user);
     } catch(e) {
       print(e.toString());
@@ -65,15 +65,29 @@ class AuthService {
   }
 
   //rezervacija
-  Future rezervacija(String ime, String brojTelefona, String brojOsoba, String datum, String vrijeme) async{
+  Future rezervacija(String ime, String brojTelefona, String brojOsoba, String datum, String vrijeme, String statusRezervacije) async{
     try {
       final User? user = _auth.currentUser;
       final uid = user?.uid;
-      await DatabaseService(uid: user!.uid).rezervacija(ime,brojTelefona, brojOsoba, datum, vrijeme);
+      await DatabaseService(uid: user!.uid).rezervacija(ime,brojTelefona, brojOsoba, datum, vrijeme, statusRezervacije);
       return _FromFirebaseUser(user);
     } catch(e) {
       print(e.toString());
       return null;
     }
   }
+
+  //rezervacija
+  Future rezervacijaDa(String rezervacija) async{
+    try {
+      final User? user = _auth.currentUser;
+      final uid = user?.uid;
+      await DatabaseService(uid: user!.uid).rezervacijaDa(rezervacija);
+      return _FromFirebaseUser(user);
+    } catch(e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
 }

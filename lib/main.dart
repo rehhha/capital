@@ -12,7 +12,6 @@ import 'firebase_options.dart';
 import 'screens/Rezervacije.dart';
 import 'package:capital/home/Home.dart';
 
-bool rezervacija = true;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
