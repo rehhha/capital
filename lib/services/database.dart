@@ -59,13 +59,14 @@ class DatabaseService {
 
 
   Future<void> rezervacija(
-      String ime, String brojTelefona, String brojOsoba, String datum, String vrijeme, String statusRezervacije) async {
+      String ime, String brojTelefona, String brojOsoba, String datum, String vrijeme, String napomena, String statusRezervacije) async {
     return await rezervacijeCollection.doc(uid).set({
       'ime': ime,
       'brojTelefona': brojTelefona,
       'brojOsoba' : brojOsoba,
       'datum' : datum,
       'vrijeme' : vrijeme,
+      'napomena' : napomena,
       'statusRezervacije' : statusRezervacije
     });
   }

@@ -28,6 +28,7 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
   String brojOsoba = '';
   String datum = '';
   String vrijeme = '';
+  String napomena = '';
   String rezervacija = '';
   String error = '';
 
@@ -219,6 +220,26 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
                                   ),
                                 ),
                               ]),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                            child: TextFormField(
+                              keyboardType: TextInputType.text,
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                icon: Icon(Icons.message),
+                                hintText: 'Imate dodatnu napomenu?',
+                                labelText: 'Napomena',
+                              ),
+                              onSaved: (String? value) {
+                                // This optional block of code can be used to run
+                                // code when the user saves the form.
+                              },
+                              initialValue: napomena,
+                              onChanged: (val) {
+                                setState(() => napomena = val);
+                              },
+                            ),
+                          ),
                           const SizedBox(
                             height: 120,
                           ),
@@ -248,6 +269,7 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
                                     brojOsoba,
                                     datum,
                                     vrijeme,
+                                    napomena,
                                     'Na \čekanju');
                                 dynamic result2 =
                                     await _auth.promjenaKorisnickihPodataka(

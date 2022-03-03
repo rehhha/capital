@@ -78,11 +78,11 @@ class AuthService {
   }
 
   //rezervacija
-  Future rezervacija(String ime, String brojTelefona, String brojOsoba, String datum, String vrijeme, String statusRezervacije) async{
+  Future rezervacija(String ime, String brojTelefona, String brojOsoba, String datum, String vrijeme,String napomena, String statusRezervacije) async{
     try {
       final User? user = _auth.currentUser;
       final uid = user?.uid;
-      await DatabaseService(uid: user!.uid).rezervacija(ime,brojTelefona, brojOsoba, datum, vrijeme, statusRezervacije);
+      await DatabaseService(uid: user!.uid).rezervacija(ime,brojTelefona, brojOsoba, datum, vrijeme,napomena, statusRezervacije);
       return _FromFirebaseUser(user);
     } catch(e) {
       print(e.toString());
