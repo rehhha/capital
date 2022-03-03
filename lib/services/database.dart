@@ -1,3 +1,4 @@
+import 'package:capital/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -34,15 +35,25 @@ class DatabaseService {
   Stream<QuerySnapshot> get korisnik {
     return korisnikCollection.snapshots();
   }
-  Future<void> imaLiRezervaciju() async {
-    String rezervacija;
-    return await korisnikCollection.doc(uid).get().then((value) {
-      value.get('statusRezervacije');
-    });
-  }
 
   Stream<QuerySnapshot> get rezervacije {
     return rezervacijeCollection.snapshots();
+  }
+
+  Korisnik _korisnik(DocumentSnapshot snapshot) {
+    return Korisnik(
+      uid: this.uid,
+      ime: snapshot['ime'],
+      prezime: snapshot['prezime'],
+      brojTelefona: snapshot['brojTelefona'],
+      rezervacija: snapshot['rezervacija'],
+
+    );
+  }
+
+  //snapshot informacija o korisniku
+  Stream<Korisnik> get korisnikInfo {
+    return korisnikCollection.doc(uid).snapshots().map(_korisnik);
   }
 
 

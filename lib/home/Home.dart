@@ -1,11 +1,13 @@
+import 'package:capital/models/user.dart';
 import 'package:capital/services/auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:capital/screens/Rezervacije.dart';
 import 'package:capital/screens/Meni.dart';
-import 'package:capital/services/database.dart';
 
 class Home extends StatelessWidget {
   final AuthService _auth = AuthService();
+  CollectionReference users = FirebaseFirestore.instance.collection('korisnik');
 
   @override
   Widget build(BuildContext context) {

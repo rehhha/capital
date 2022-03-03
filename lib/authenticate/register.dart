@@ -1,6 +1,7 @@
 import 'package:capital/screens/Rezervacije.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:capital/models/user.dart';
 import '../services/auth.dart';
 import 'authenticate.dart';
 
@@ -16,6 +17,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  final FirebaseAuth _authh = FirebaseAuth.instance;
 
   String email = '';
   String pass = '';

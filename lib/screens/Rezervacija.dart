@@ -20,7 +20,6 @@ class _RezervacijaState extends State<Rezervacija> {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     final uid = _auth.currentUser?.uid;
 
-
     return FutureBuilder<DocumentSnapshot>(
         future: rezervacije.doc(uid).get(),
         builder:
@@ -37,14 +36,7 @@ class _RezervacijaState extends State<Rezervacija> {
             Map<String, dynamic> data =
                 snapshot.data!.data() as Map<String, dynamic>;
             return Text(
-
-                "Poštovani ${data['ime']}, imate rezervaciju dana ${data['datum']} u ${data['vrijeme']}",
-               style: TextStyle(
-                 fontSize: 30,
-                 fontWeight: FontWeight.bold,
-               ),
-              textAlign: TextAlign.center,
-            );
+                "Poštovani, ${data['ime']}, imate rezervaciju dana ${data['datum']} u ${data['vrijeme']}");
           }
           return Text("loading");
         },

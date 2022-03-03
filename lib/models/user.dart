@@ -1,5 +1,6 @@
 class Korisnik {
-  final String uid;
 
-  Korisnik ({ required this.uid });
+  final String? uid;
+  Korisnik ({ required this.uid, ime, prezime, brojTelefona, rezervacija });
+
 }
