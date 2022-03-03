@@ -58,7 +58,7 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
           if (snapshot.hasData && !snapshot.data!.exists) {
             return Text("Document does not exist");
           }
-          if (snapshot.connectionState == ConnectionState.done) {
+
             Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
             ime = data['ime'];
             prezime = data['prezime'];
@@ -261,8 +261,6 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
                   ),
               ),
             );
-          }
-          return Text("loading");
         });
   }
 }
