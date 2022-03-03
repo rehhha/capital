@@ -43,7 +43,7 @@ class _ImaLiRezervacijuState extends State<ImaLiRezervaciju> {
           if (data['rezervacija'] == 'ne') {
             return Column(
               children: [
-                Text('Trenutno nemate rezervaciju',
+                Text('Poštovani, \ntrenutno nemate rezervaciju',
                 style: TextStyle(
                   fontSize: 25,
                 ),
