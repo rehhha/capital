@@ -36,26 +36,44 @@ class _RezervacijeState extends State<Rezervacije> {
           centerTitle: true,
           backgroundColor: const Color.fromARGB(255, 172, 137, 83),
         ),
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
+        body: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
 
-                SizedBox(
-                  height: 100.0,
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                Image.asset(
-                  'assets/images/ic_launcher.png',
-                  scale: 5,
-                ),
-                ImaLiRezervaciju(),
-              ],
+                  SizedBox(
+                    height: 150.0,
+                  ),
+
+                  Image.asset(
+                    'assets/images/ic_launcher.png',
+                    scale: 6,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Upravljajte rezervacijama u ',
+                    style: TextStyle(
+                      fontSize: 25,
+                    ),
+                  ),
+                  const Text(
+                    'Capital Bars & Restaurants',
+                    style:TextStyle(
+                      color: Color.fromARGB(255, 172, 137, 83),
+                      fontSize: 25,
+                    )
+                  ),
+                  SizedBox(
+                    height: 150.0,
+                  ),
+                  ImaLiRezervaciju(),
+                ],
+              ),
             ),
           ),
         ));

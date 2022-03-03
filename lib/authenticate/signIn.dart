@@ -27,7 +27,7 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        backgroundColor: Colors.grey[400],
+        backgroundColor: Color.fromARGB(255, 172, 137, 83),
         elevation: 0.0,
         title: Text('Prijavi se'),
         actions: <Widget>[
@@ -88,14 +88,16 @@ class _SignInState extends State<SignIn> {
                         },
                       ),
                       SizedBox(
-                        height: 20.0,
+                        height: 100.0,
                       ),
-                      RaisedButton(
-                        color: Colors.blue[400],
+                      ElevatedButton(
                         child: Text(
-                          'Prijavi se',
-                          style: TextStyle(color: Colors.white),
-                        ),
+                          'Prijavi se'),
+                          style: ElevatedButton.styleFrom(
+                            fixedSize: Size.fromWidth(250),
+                            textStyle: TextStyle(fontSize: 25),
+                            primary: Color.fromARGB(255, 172, 137, 83),
+                          ),
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             dynamic result = await _auth.signIn(email, pass);
