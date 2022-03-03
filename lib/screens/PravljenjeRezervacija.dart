@@ -34,6 +34,8 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
   DateTime _dateTime = DateTime.now();
   TimeOfDay _timeOfDay = TimeOfDay.now();
 
+
+
   String formatTimeOfDay(TimeOfDay tod) {
     final now = new DateTime.now();
     final dt = DateTime(now.year, now.month, now.day, tod.hour, tod.minute);
@@ -169,8 +171,9 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
                                           .then((date) {
                                         setState(() {
                                           _dateTime = date!;
-                                          datum = DateFormat('dd-MM-yyyy')
-                                              .format(_dateTime);
+                                          datum = _dateTime.day.toString() + '.'
+                                              + _dateTime.month.toString() + '.'
+                                              + _dateTime.year.toString();
                                         });
                                       });
                                     },
@@ -202,7 +205,9 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
                                           .then((time) {
                                         setState(() {
                                           _timeOfDay = time!;
-                                          vrijeme = formatTimeOfDay(_timeOfDay);
+                                          vrijeme = _timeOfDay.hour.toString() +
+                                              ":" +
+                                              _timeOfDay.minute.toString();
                                         });
                                       });
                                     },
@@ -225,6 +230,18 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
                                     content: Text("Pravljenje rezervacije"),
                                   ),
                                 );
+                                if(datum.isEmpty){
+                                  _dateTime = DateTime.now();
+                                  datum = _dateTime.day.toString() + '.'
+                                      + _dateTime.month.toString() + '.'
+                                      + _dateTime.year.toString();
+                                }
+                                if(vrijeme.isEmpty){
+                                  _timeOfDay = TimeOfDay.now();
+                                  vrijeme = _timeOfDay.hour.toString() +
+                                      ":" +
+                                      _timeOfDay.minute.toString();
+                                }
                                 dynamic result = await _auth.rezervacija(
                                     ime,
                                     brojTelefona,

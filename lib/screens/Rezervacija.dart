@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'PravljenjeRezervacija.dart';
 import 'package:capital/services/auth.dart';
+import 'dart:convert';
 
 class Rezervacija extends StatefulWidget {
   const Rezervacija({Key? key}) : super(key: key);
@@ -35,8 +36,10 @@ class _RezervacijaState extends State<Rezervacija> {
           if (snapshot.connectionState == ConnectionState.done) {
             Map<String, dynamic> data =
                 snapshot.data!.data() as Map<String, dynamic>;
+            //final status = utf8.decode(data['statusRezervacije']).toString();
             return Text(
-                "Poštovani, ${data['ime']}, imate rezervaciju dana ${data['datum']} u ${data['vrijeme']}");
+                "Poštovani, ${data['ime']}, imate rezervaciju dana ${data['datum']} u ${data['vrijeme']}.\n "
+                    "Status rezervacije: ");
           }
           return Text("loading");
         },
