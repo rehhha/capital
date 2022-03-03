@@ -64,6 +64,19 @@ class AuthService {
     }
   }
 
+  //mijenjanje korisničkih podataka
+  Future promjenaKorisnickihPodataka(String ime, String prezime, String brojTelefona, String rezervacija) async{
+    try {
+      final User? user = _auth.currentUser;
+      final uid = user?.uid;
+      await DatabaseService(uid: user!.uid).updateUserData(ime,prezime, brojTelefona, rezervacija);
+      return _FromFirebaseUser(user);
+    } catch(e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
   //rezervacija
   Future rezervacija(String ime, String brojTelefona, String brojOsoba, String datum, String vrijeme, String statusRezervacije) async{
     try {
@@ -78,16 +91,16 @@ class AuthService {
   }
 
   //rezervacija
-  Future rezervacijaDa(String rezervacija) async{
+ /* Future rezervacijaDa(String rezervacija) async{
     try {
       final User? user = _auth.currentUser;
       final uid = user?.uid;
-      await DatabaseService(uid: user!.uid).rezervacijaDa(rezervacija);
+      await DatabaseService(uid: user!.uid).updateUserData(rezervacija);
       return _FromFirebaseUser(user);
     } catch(e) {
       print(e.toString());
       return null;
     }
-  }
+  }*/
 
 }

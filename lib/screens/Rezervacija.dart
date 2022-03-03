@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +36,11 @@ class _RezervacijaState extends State<Rezervacija> {
           if (snapshot.connectionState == ConnectionState.done) {
             Map<String, dynamic> data =
                 snapshot.data!.data() as Map<String, dynamic>;
+            String statusRezervacije = "${data['statusRezervacije']}";
+
             return Text(
-                "Poštovani, ${data['ime']}, imate rezervaciju dana ${data['datum']} u ${data['vrijeme']}");
+                "Poštovani, ${data['ime']}, imate rezervaciju dana ${data['datum']} u ${data['vrijeme']}\n"
+                    "Status rezervacije: $statusRezervacije");
           }
           return Text("loading");
         },
