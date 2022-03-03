@@ -29,9 +29,8 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        backgroundColor: Colors.grey[400],
+        backgroundColor: const Color.fromARGB(255, 172, 137, 83),
         elevation: 0.0,
         title: Text('Registruj se'),
         actions: <Widget>[
@@ -52,7 +51,7 @@ class _RegisterState extends State<Register> {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 20.0,
+                  height: 80.0,
                 ),
                 TextFormField(
                   decoration: const InputDecoration(
@@ -124,14 +123,18 @@ class _RegisterState extends State<Register> {
                     setState(() => pass = val);
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20.0,
+
                 ),
-                RaisedButton(
-                  color: Colors.blue[400],
+                SizedBox(height: 60.0),
+                ElevatedButton(
                   child: Text(
-                    'Registruj se',
-                    style: TextStyle(color: Colors.white),
+                    'Registruj se'),
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: Size.fromWidth(250),
+                    textStyle: TextStyle(fontSize: 25),
+                    primary: Color.fromARGB(255, 172, 137, 83),
                   ),
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
@@ -144,7 +147,7 @@ class _RegisterState extends State<Register> {
                     }
                   },
                 ),
-                SizedBox(height: 12.0),
+
                 Text(
                   error,
                   style: TextStyle(color: Colors.red, fontSize: 14),
