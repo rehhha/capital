@@ -53,12 +53,12 @@ class _RezervacijeState extends State<Rezervacije> {
                     scale: 6,
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 22,
                   ),
                   Text(
                     'Upravljajte rezervacijama u ',
                     style: TextStyle(
-                      fontSize: 25,
+                      fontSize: 20,
                     ),
                   ),
                   const Text(
