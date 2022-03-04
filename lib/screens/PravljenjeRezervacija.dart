@@ -147,6 +147,26 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
                               setState(() => brojOsoba = val);
                             },
                           ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                            child: TextFormField(
+                              keyboardType: TextInputType.text,
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                icon: Icon(Icons.message),
+                                hintText: 'Imate dodatnu napomenu?',
+                                labelText: 'Napomena',
+                              ),
+                              onSaved: (String? value) {
+                                // This optional block of code can be used to run
+                                // code when the user saves the form.
+                              },
+                              onChanged: (val) {
+                                setState(() => val);
+                              },
+                            ),
+                          ),
+
                           Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
@@ -220,29 +240,7 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
                                   ),
                                 ),
                               ]),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                            child: TextFormField(
-                              keyboardType: TextInputType.text,
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(),
-                                icon: Icon(Icons.message),
-                                hintText: 'Imate dodatnu napomenu?',
-                                labelText: 'Napomena',
-                              ),
-                              onSaved: (String? value) {
-                                // This optional block of code can be used to run
-                                // code when the user saves the form.
-                              },
-                              initialValue: napomena,
-                              onChanged: (val) {
-                                setState(() => napomena = val);
-                              },
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 120,
-                          ),
+
                           ElevatedButton(
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
@@ -292,6 +290,7 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
                             style: ElevatedButton.styleFrom(
                               minimumSize: const Size(200, 50),
                               primary: Color.fromARGB(255, 172, 137, 83),
+                              textStyle: TextStyle(fontSize: 20),
                             ),
                           ),
                         ],
