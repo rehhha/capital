@@ -43,7 +43,7 @@ class _ImaLiRezervacijuState extends State<ImaLiRezervaciju> {
           if (data['rezervacija'] == 'ne') {
             return Column(
               children: [
-                Text('Trenutno nemate rezervaciju',
+                Text('Poštovani, \ntrenutno nemate rezervaciju',
                 style: TextStyle(
                   fontSize: 25,
                 ),
@@ -52,13 +52,15 @@ class _ImaLiRezervacijuState extends State<ImaLiRezervaciju> {
                 Container(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        fixedSize: Size.fromWidth(200),
-                        textStyle: TextStyle(fontSize: 25)
+                        minimumSize: const Size(200, 50),
+                          primary: Color.fromARGB(255,172,137,83),
+                        textStyle: TextStyle(fontSize: 20),
+
                       ),
-                      child: const Text('Napravite rezervaciju'),
+                      child: const Text('Napravi rezervaciju'),
                       onPressed: () {
                         Navigator.push(
                           context,
