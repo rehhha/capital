@@ -69,7 +69,7 @@ class _RezervacijeState extends State<Rezervacije> {
                     )
                   ),
                   SizedBox(
-                    height: 150.0,
+                    height: 120.0,
                   ),
                   ImaLiRezervaciju(),
                 ],
