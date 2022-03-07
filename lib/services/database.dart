@@ -13,7 +13,7 @@ class DatabaseService {
       FirebaseFirestore.instance.collection('rezervacije');
 
   Future<void> updateUserData(
-      String ime, String prezime, String brojTelefona, String rezervacija) async {
+      String? ime, String? prezime, String? brojTelefona, String? rezervacija) async {
     return await korisnikCollection.doc(uid).set(
       {
         'ime': ime,
@@ -40,7 +40,7 @@ class DatabaseService {
     return rezervacijeCollection.snapshots();
   }
 
-  Korisnik _korisnik(DocumentSnapshot snapshot) {
+  /*Korisnik _korisnik(DocumentSnapshot snapshot) {
     return Korisnik(
       uid: this.uid,
       ime: snapshot['ime'],
@@ -49,25 +49,24 @@ class DatabaseService {
       rezervacija: snapshot['rezervacija'],
 
     );
-  }
+  }*/
 
   //snapshot informacija o korisniku
-  Stream<Korisnik> get korisnikInfo {
+  /*Stream<Korisnik> get korisnikInfo {
     return korisnikCollection.doc(uid).snapshots().map(_korisnik);
-  }
+  }*/
 
 
 
   Future<void> rezervacija(
-      String ime, String brojTelefona, String brojOsoba, String datum, String vrijeme, String napomena, String statusRezervacije) async {
+      String? ime, String? brojTelefona, String? brojOsoba, String? datum, String? vrijeme, String? napomena) async {
     return await rezervacijeCollection.doc(uid).set({
       'ime': ime,
       'brojTelefona': brojTelefona,
       'brojOsoba' : brojOsoba,
       'datum' : datum,
       'vrijeme' : vrijeme,
-      'napomena' : napomena,
-      'statusRezervacije' : statusRezervacije
+      'napomena' : napomena
     });
   }
 }

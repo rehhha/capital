@@ -1,4 +1,5 @@
 import 'package:capital/models/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'database.dart';
 import 'package:flutter/cupertino.dart';
@@ -65,7 +66,7 @@ class AuthService {
   }
 
   //mijenjanje korisničkih podataka
-  Future promjenaKorisnickihPodataka(String ime, String prezime, String brojTelefona, String rezervacija) async{
+  Future promjenaKorisnickihPodataka(String? ime, String? prezime, String? brojTelefona, String? rezervacija) async{
     try {
       final User? user = _auth.currentUser;
       final uid = user?.uid;
@@ -78,29 +79,46 @@ class AuthService {
   }
 
   //rezervacija
-  Future rezervacija(String ime, String brojTelefona, String brojOsoba, String datum, String vrijeme,String napomena, String statusRezervacije) async{
+  Future rezervacija(String? ime, String? brojTelefona, String? brojOsoba, String? datum, String? vrijeme,String? napomena) async{
     try {
       final User? user = _auth.currentUser;
       final uid = user?.uid;
-      await DatabaseService(uid: user!.uid).rezervacija(ime,brojTelefona, brojOsoba, datum, vrijeme,napomena, statusRezervacije);
+      await DatabaseService(uid: user!.uid).rezervacija(ime,brojTelefona, brojOsoba, datum, vrijeme,napomena);
       return _FromFirebaseUser(user);
     } catch(e) {
       print(e.toString());
       return null;
     }
   }
+  CollectionReference rezervacije = FirebaseFirestore.instance.collection('rezervacije');
 
-  //rezervacija
- /* Future rezervacijaDa(String rezervacija) async{
-    try {
-      final User? user = _auth.currentUser;
-      final uid = user?.uid;
-      await DatabaseService(uid: user!.uid).updateUserData(rezervacija);
-      return _FromFirebaseUser(user);
-    } catch(e) {
-      print(e.toString());
-      return null;
-    }
-  }*/
+  Future izbrisiRezervaciju(String uid) {
+    updateUser(uid);
+    return rezervacije
+        .doc(uid)
+        .delete()
+        .then((value) => print("Rezervacija izbrisana"))
+        .catchError((error) => print("Failed to delete user: $error"));
+  }
+
+  CollectionReference users = FirebaseFirestore.instance.collection('korisnik');
+
+  Future<void> updateUser(String uid) {
+    return users
+        .doc(uid)
+        .update({'rezervacija': 'ne'})
+        .then((value) => print("User Updated"))
+        .catchError((error) => print("Failed to update user: $error"));
+  }
+
+  //preuzimanje podataka
+  /*Future uzmiIme(){
+    final User? user = _auth.currentUser;
+    final uid = user?.uid;
+
+
+  }
+*/
+
 
 }

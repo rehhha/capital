@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../home/Home.dart';
 import 'PravljenjeRezervacija.dart';
 import 'package:capital/services/auth.dart';
 
@@ -52,7 +53,7 @@ class _ImaLiRezervacijuState extends State<ImaLiRezervaciju> {
                 Container(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.only(top:20),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(200, 50),
@@ -60,13 +61,43 @@ class _ImaLiRezervacijuState extends State<ImaLiRezervaciju> {
                         textStyle: TextStyle(fontSize: 20),
 
                       ),
-                      child: const Text('Napravi rezervaciju'),
+                      child: Column(
+                        children: [
+                          const Text('Napravi rezervaciju'),
+                        ],
+                      ),
                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
                                   const PravljenjeRezervacija()),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(200, 50),
+                        primary: Color.fromARGB(255,172,137,83),
+                        textStyle: TextStyle(fontSize: 20),
+
+                      ),
+                      child: Column(
+                        children: [
+                          const Text('Home'),
+                        ],
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Home()),
                         );
                       },
                     ),

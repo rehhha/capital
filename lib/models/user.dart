@@ -1,6 +1,16 @@
 class Korisnik {
 
-  final String? uid;
-  Korisnik ({ required this.uid, ime, prezime, brojTelefona, rezervacija });
+  final String uid;
+  String ime = '';
+  String brojTelefona = '';
+  Korisnik ({ required this.uid });
+
+  void postaviIme(String? unos){
+    ime = unos!;
+  }
+
+  String uzmiIme(){
+    return ime;
+  }
 
 }

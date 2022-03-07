@@ -1,5 +1,6 @@
 import 'package:capital/main.dart';
 import 'package:capital/models/user.dart';
+import 'package:capital/screens/PopunjavanjeForme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -22,14 +23,14 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
 
 
 
-  String ime = '';
-  String prezime = '';
-  String brojTelefona = '';
+  String? ime = '';
+  String? prezime = '';
+  String? brojTelefona = '';
   String brojOsoba = '';
   String datum = '';
   String vrijeme = '';
   String napomena = '';
-  String rezervacija = '';
+  String? rezervacija = '';
   String error = '';
 
   DateTime _dateTime = DateTime.now();
@@ -62,11 +63,12 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
             return Text("Document does not exist");
           }
 
-            Map<String, dynamic> data = snapshot.data!.data() as Map<String, dynamic>;
+          if(snapshot.connectionState == ConnectionState.done){
+            Map<String, dynamic> data = (snapshot.data!.data()??{}) as Map<String, dynamic>;
             ime = data['ime'];
             prezime = data['prezime'];
             brojTelefona = data['brojTelefona'];
-            rezervacija = data['rezervacija'];
+            rezervacija = data['rezervacija'];}
             return Scaffold(
               appBar: AppBar(
                 title: Text('Napravi rezervaciju'),
@@ -90,7 +92,8 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
                               ),
                             ),
                           ),
-                          TextFormField(
+                         const PopunjavanjeForme(),
+                         /* TextFormField(
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               icon: Icon(Icons.person),
@@ -128,7 +131,7 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
                                 setState(() => brojTelefona = val);
                               },
                             ),
-                          ),
+                          ),*/
                           TextFormField(
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
@@ -161,12 +164,12 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
                                 // This optional block of code can be used to run
                                 // code when the user saves the form.
                               },
+                              initialValue: napomena,
                               onChanged: (val) {
-                                setState(() => val);
+                                setState(() => napomena = val);
                               },
                             ),
                           ),
-
                           Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
@@ -241,6 +244,7 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
                                 ),
                               ]),
 
+
                           ElevatedButton(
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
@@ -267,8 +271,7 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
                                     brojOsoba,
                                     datum,
                                     vrijeme,
-                                    napomena,
-                                    'Na \čekanju');
+                                    napomena);
                                 dynamic result2 =
                                     await _auth.promjenaKorisnickihPodataka(
                                         ime, prezime, brojTelefona, 'Da');
@@ -290,7 +293,6 @@ class _PravljenjeRezervacijaState extends State<PravljenjeRezervacija> {
                             style: ElevatedButton.styleFrom(
                               minimumSize: const Size(200, 50),
                               primary: Color.fromARGB(255, 172, 137, 83),
-                              textStyle: TextStyle(fontSize: 20),
                             ),
                           ),
                         ],
