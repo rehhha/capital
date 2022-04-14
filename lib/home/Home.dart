@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:capital/screens/Rezervacije.dart';
 import 'package:capital/screens/Meni.dart';
+import 'package:capital/authenticate/authenticate.dart';
+import 'package:capital/main.dart';
 
 class Home extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -19,9 +21,10 @@ class Home extends StatelessWidget {
         actions: <Widget>[
           FlatButton.icon(
             icon: Icon(Icons.person),
-            label: Text('logout'),
+            label: Text('Odjavi se'),
             onPressed: () async {
               await _auth.signOut();
+
             },
           )
         ],

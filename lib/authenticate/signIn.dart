@@ -91,13 +91,12 @@ class _SignInState extends State<SignIn> {
                         height: 100.0,
                       ),
                       ElevatedButton(
-                        child: Text(
-                          'Prijavi se'),
-                          style: ElevatedButton.styleFrom(
-                            fixedSize: Size.fromWidth(250),
-                            textStyle: TextStyle(fontSize: 25),
-                            primary: Color.fromARGB(255, 172, 137, 83),
-                          ),
+                        child: Text('Prijavi se'),
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: Size.fromWidth(400),
+                          textStyle: TextStyle(fontSize: 25),
+                          primary: Color.fromARGB(255, 172, 137, 83),
+                        ),
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             dynamic result = await _auth.signIn(email, pass);
@@ -107,11 +106,28 @@ class _SignInState extends State<SignIn> {
                           }
                         },
                       ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            dynamic result = await _auth.signInAnon();
+                            if (result == null) {
+                              setState(() => error = 'Greška');
+                            }
+                          }
+                        },
+                        child: Text('Prijavi se anonimno',
+                            textAlign: TextAlign.center),
+                        style: ElevatedButton.styleFrom(
+                          fixedSize: Size.fromWidth(400),
+                          textStyle: TextStyle(fontSize: 25),
+                          primary: Color.fromARGB(255, 172, 137, 83),
+                        ),
+                      ),
                       SizedBox(height: 12.0),
                       Text(
                         error,
                         style: TextStyle(color: Colors.red, fontSize: 14),
-                      )
+                      ),
                     ],
                   ),
                 ),

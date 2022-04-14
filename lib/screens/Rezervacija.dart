@@ -7,6 +7,7 @@ import '../home/Home.dart';
 import 'PravljenjeRezervacija.dart';
 import 'package:capital/services/auth.dart';
 import 'dart:convert';
+import 'package:capital/main.dart';
 
 import 'Rezervacije.dart';
 
@@ -62,7 +63,7 @@ class _RezervacijaState extends State<Rezervacija> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Home()),
+                      MaterialPageRoute(builder: (context) => Capital()),
                     );
                   },
                 ),
@@ -82,7 +83,7 @@ class _RezervacijaState extends State<Rezervacija> {
                     Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Rezervacije()),
+                          builder: (context) => Capital()),
                           (Route<dynamic> route) => false,
                     );
                   },

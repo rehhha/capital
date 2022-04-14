@@ -1,3 +1,4 @@
+import 'package:capital/main.dart';
 import 'package:capital/screens/Rezervacija.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -30,11 +31,30 @@ class _ImaLiRezervacijuState extends State<ImaLiRezervaciju> {
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
-          return Text("Something went wrong");
+          return Column(
+            children: [
+              Text("Morate se registrovati kako biste napravili rezervaciju!",
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                  textAlign: TextAlign.center
+              ),
+            ],
+          );
+
         }
 
         if (snapshot.hasData && !snapshot.data!.exists) {
-          return Text("Document does not exist");
+          return Column(
+            children: [
+              Text("Morate se registrovati kako biste napravili rezervaciju!",
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+                  textAlign: TextAlign.center
+              ),
+            ],
+          );
         }
 
         if (snapshot.connectionState == ConnectionState.done) {
@@ -97,7 +117,7 @@ class _ImaLiRezervacijuState extends State<ImaLiRezervaciju> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Home()),
+                              builder: (context) => Capital()),
                         );
                       },
                     ),

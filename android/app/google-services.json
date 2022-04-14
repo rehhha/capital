@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:523045451447:android:b9649510967aa00aee7f32",
+        "mobilesdk_app_id": "1:523045451447:android:c29f2cad19e7ac78ee7f32",
         "android_client_info": {
-          "package_name": "com.example.capital"
+          "package_name": "com.example.capital_admin"
         }
       },
       "oauth_client": [
@@ -31,10 +31,46 @@
               "client_type": 3
             },
             {
-              "client_id": "523045451447-nq66ka5l530f95ta99qmcedcvtato69h.apps.googleusercontent.com",
+              "client_id": "523045451447-3b4vcvgcgeb80ji2dba7u3tg6se062lr.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.capital"
+                "bundle_id": "com.example.capitalAdmin"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:523045451447:android:337a809e3608dc62ee7f32",
+        "android_client_info": {
+          "package_name": "com.mamarketing.capital"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "523045451447-gthi6gt500o7t5vsme82eedhbgiu4dsa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDB2ko2wSCDDBKYmSL2AQjAnFZg-8eGe6E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "523045451447-gthi6gt500o7t5vsme82eedhbgiu4dsa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "523045451447-3b4vcvgcgeb80ji2dba7u3tg6se062lr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.capitalAdmin"
               }
             }
           ]
